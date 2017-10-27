@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.butCreatePNG = new System.Windows.Forms.Button();
             this.lblURL = new System.Windows.Forms.Label();
             this.textBoxURL = new System.Windows.Forms.TextBox();
             this.textBoxMapType = new System.Windows.Forms.TextBox();
@@ -39,22 +38,16 @@
             this.lblCenterLng = new System.Windows.Forms.Label();
             this.textBoxZoom = new System.Windows.Forms.TextBox();
             this.lblZoom = new System.Windows.Forms.Label();
-            this.textBoxHeight = new System.Windows.Forms.TextBox();
-            this.lblHeight = new System.Windows.Forms.Label();
-            this.textBoxWidth = new System.Windows.Forms.TextBox();
-            this.lblWidth = new System.Windows.Forms.Label();
             this.lblDone = new System.Windows.Forms.Label();
+            this.butCreatePNG2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.textBoxFactorLng = new System.Windows.Forms.TextBox();
+            this.lblFactorLng = new System.Windows.Forms.Label();
+            this.textBoxFactorLat = new System.Windows.Forms.TextBox();
+            this.lblFactorLat = new System.Windows.Forms.Label();
+            this.webBrowserPNG = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
-            // 
-            // butCreatePNG
-            // 
-            this.butCreatePNG.Location = new System.Drawing.Point(205, 39);
-            this.butCreatePNG.Name = "butCreatePNG";
-            this.butCreatePNG.Size = new System.Drawing.Size(94, 23);
-            this.butCreatePNG.TabIndex = 3;
-            this.butCreatePNG.Text = "Create PNG";
-            this.butCreatePNG.UseVisualStyleBackColor = true;
-            this.butCreatePNG.Click += new System.EventHandler(this.butCreatePNG_Click);
             // 
             // lblURL
             // 
@@ -130,7 +123,7 @@
             this.textBoxZoom.Name = "textBoxZoom";
             this.textBoxZoom.Size = new System.Drawing.Size(88, 20);
             this.textBoxZoom.TabIndex = 14;
-            this.textBoxZoom.Text = "14";
+            this.textBoxZoom.Text = "16";
             // 
             // lblZoom
             // 
@@ -141,40 +134,6 @@
             this.lblZoom.TabIndex = 13;
             this.lblZoom.Text = "Zoom:";
             // 
-            // textBoxHeight
-            // 
-            this.textBoxHeight.Location = new System.Drawing.Point(69, 165);
-            this.textBoxHeight.Name = "textBoxHeight";
-            this.textBoxHeight.Size = new System.Drawing.Size(88, 20);
-            this.textBoxHeight.TabIndex = 16;
-            this.textBoxHeight.Text = "1000";
-            // 
-            // lblHeight
-            // 
-            this.lblHeight.AutoSize = true;
-            this.lblHeight.Location = new System.Drawing.Point(21, 172);
-            this.lblHeight.Name = "lblHeight";
-            this.lblHeight.Size = new System.Drawing.Size(41, 13);
-            this.lblHeight.TabIndex = 15;
-            this.lblHeight.Text = "Height:";
-            // 
-            // textBoxWidth
-            // 
-            this.textBoxWidth.Location = new System.Drawing.Point(69, 139);
-            this.textBoxWidth.Name = "textBoxWidth";
-            this.textBoxWidth.Size = new System.Drawing.Size(88, 20);
-            this.textBoxWidth.TabIndex = 18;
-            this.textBoxWidth.Text = "1600";
-            // 
-            // lblWidth
-            // 
-            this.lblWidth.AutoSize = true;
-            this.lblWidth.Location = new System.Drawing.Point(24, 143);
-            this.lblWidth.Name = "lblWidth";
-            this.lblWidth.Size = new System.Drawing.Size(38, 13);
-            this.lblWidth.TabIndex = 17;
-            this.lblWidth.Text = "Width:";
-            // 
             // lblDone
             // 
             this.lblDone.AutoSize = true;
@@ -183,16 +142,90 @@
             this.lblDone.Size = new System.Drawing.Size(0, 13);
             this.lblDone.TabIndex = 19;
             // 
-            // Form1
+            // butCreatePNG2
+            // 
+            this.butCreatePNG2.Location = new System.Drawing.Point(175, 39);
+            this.butCreatePNG2.Name = "butCreatePNG2";
+            this.butCreatePNG2.Size = new System.Drawing.Size(94, 23);
+            this.butCreatePNG2.TabIndex = 20;
+            this.butCreatePNG2.Text = "Create PNG2";
+            this.butCreatePNG2.UseVisualStyleBackColor = true;
+            this.butCreatePNG2.Click += new System.EventHandler(this.butCreatePNG2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(285, 34);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(377, 34);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(351, 48);
+            this.richTextBox1.TabIndex = 22;
+            this.richTextBox1.Text = "";
+            // 
+            // textBoxFactorLng
+            // 
+            this.textBoxFactorLng.Location = new System.Drawing.Point(69, 140);
+            this.textBoxFactorLng.Name = "textBoxFactorLng";
+            this.textBoxFactorLng.Size = new System.Drawing.Size(88, 20);
+            this.textBoxFactorLng.TabIndex = 24;
+            this.textBoxFactorLng.Text = "0.004";
+            // 
+            // lblFactorLng
+            // 
+            this.lblFactorLng.AutoSize = true;
+            this.lblFactorLng.Location = new System.Drawing.Point(1, 144);
+            this.lblFactorLng.Name = "lblFactorLng";
+            this.lblFactorLng.Size = new System.Drawing.Size(61, 13);
+            this.lblFactorLng.TabIndex = 23;
+            this.lblFactorLng.Text = "Factor Lng:";
+            // 
+            // textBoxFactorLat
+            // 
+            this.textBoxFactorLat.Location = new System.Drawing.Point(68, 169);
+            this.textBoxFactorLat.Name = "textBoxFactorLat";
+            this.textBoxFactorLat.Size = new System.Drawing.Size(88, 20);
+            this.textBoxFactorLat.TabIndex = 26;
+            this.textBoxFactorLat.Text = "0.004";
+            // 
+            // lblFactorLat
+            // 
+            this.lblFactorLat.AutoSize = true;
+            this.lblFactorLat.Location = new System.Drawing.Point(0, 173);
+            this.lblFactorLat.Name = "lblFactorLat";
+            this.lblFactorLat.Size = new System.Drawing.Size(58, 13);
+            this.lblFactorLat.TabIndex = 25;
+            this.lblFactorLat.Text = "Factor Lat:";
+            // 
+            // webBrowserPNG
+            // 
+            this.webBrowserPNG.Location = new System.Drawing.Point(175, 91);
+            this.webBrowserPNG.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserPNG.Name = "webBrowserPNG";
+            this.webBrowserPNG.Size = new System.Drawing.Size(832, 717);
+            this.webBrowserPNG.TabIndex = 27;
+            // 
+            // GoogleMapPNG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 723);
+            this.ClientSize = new System.Drawing.Size(1134, 816);
+            this.Controls.Add(this.webBrowserPNG);
+            this.Controls.Add(this.textBoxFactorLat);
+            this.Controls.Add(this.lblFactorLat);
+            this.Controls.Add(this.textBoxFactorLng);
+            this.Controls.Add(this.lblFactorLng);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.butCreatePNG2);
             this.Controls.Add(this.lblDone);
-            this.Controls.Add(this.textBoxWidth);
-            this.Controls.Add(this.lblWidth);
-            this.Controls.Add(this.textBoxHeight);
-            this.Controls.Add(this.lblHeight);
             this.Controls.Add(this.textBoxZoom);
             this.Controls.Add(this.lblZoom);
             this.Controls.Add(this.textBoxCenterLng);
@@ -203,8 +236,7 @@
             this.Controls.Add(this.lblMapType);
             this.Controls.Add(this.textBoxURL);
             this.Controls.Add(this.lblURL);
-            this.Controls.Add(this.butCreatePNG);
-            this.Name = "Form1";
+            this.Name = "GoogleMapPNG";
             this.Text = "Google Map PNG";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -212,7 +244,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button butCreatePNG;
         private System.Windows.Forms.Label lblURL;
         private System.Windows.Forms.TextBox textBoxURL;
         private System.Windows.Forms.TextBox textBoxMapType;
@@ -223,11 +254,15 @@
         private System.Windows.Forms.Label lblCenterLng;
         private System.Windows.Forms.TextBox textBoxZoom;
         private System.Windows.Forms.Label lblZoom;
-        private System.Windows.Forms.TextBox textBoxHeight;
-        private System.Windows.Forms.Label lblHeight;
-        private System.Windows.Forms.TextBox textBoxWidth;
-        private System.Windows.Forms.Label lblWidth;
         private System.Windows.Forms.Label lblDone;
+        private System.Windows.Forms.Button butCreatePNG2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox textBoxFactorLng;
+        private System.Windows.Forms.Label lblFactorLng;
+        private System.Windows.Forms.TextBox textBoxFactorLat;
+        private System.Windows.Forms.Label lblFactorLat;
+        private System.Windows.Forms.WebBrowser webBrowserPNG;
     }
 }
 

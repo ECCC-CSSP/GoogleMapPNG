@@ -32,8 +32,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSSPEnumsDLL">
+      <HintPath>..\..\CSSPEnumsDLL\CSSPEnumsDLL\bin\Debug\CSSPEnumsDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="CSSPModelsDLL">
+      <HintPath>..\..\CSSPModelsDLL\CSSPModelsDLL\bin\Debug\CSSPModelsDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +60,87 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppErrLog.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppTask.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppTaskLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BoxModel.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BoxModelLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BoxModelResult.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClimateDataValue.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClimateSite.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactPreference.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactShortcut.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CSSPWebToolsDBEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSSPWebToolsDBEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CSSPWebToolsDBEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CSSPWebToolsDBEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSSPWebToolsDBEDM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DocTemplate.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Email.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmailDistributionList.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmailDistributionListContact.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmailDistributionListContactLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmailDistributionListLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="GoogleMapAPI.cs" />
     <Compile Include="GoogleMapPNG.cs">
       <SubType>Form</SubType>
@@ -52,8 +148,173 @@
     <Compile Include="GoogleMapPNG.Designer.cs">
       <DependentUpon>GoogleMapPNG.cs</DependentUpon>
     </Compile>
+    <Compile Include="HydrometricDataValue.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HydrometricSite.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InfrastructureLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LabSheet.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LabSheetDetail.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LabSheetTubeMPNDetail.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MapInfo.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MapInfoPoint.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MikeBoundaryCondition.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MikeScenario.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MikeSource.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MikeSourceStartEnd.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMAnalysisReportParameter.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMLookupMPN.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMRun.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMRunLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMSample.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMSampleLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMSite.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMSiteStartEndDate.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMSubsector.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MWQMSubsectorLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolSourceObservation.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolSourceObservationIssue.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolSourceSite.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RainExceedance.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RatingCurve.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RatingCurveValue.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportType.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTypeLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResetPassword.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SamplingPlan.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SamplingPlanSubsector.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SamplingPlanSubsectorSite.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spill.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpillLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tel.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TideDataValue.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TideLocation.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TideSite.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVFile.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVFileLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVItem.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVItemLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVItemLink.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVItemStat.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVItemUserAuthorization.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVTypeUserAuthorization.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UseOfSite.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VPAmbient.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VPResult.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VPScenario.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VPScenarioLanguage.cs">
+      <DependentUpon>CSSPWebToolsDBEDM.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GoogleMapPNG.resx">
       <DependentUpon>GoogleMapPNG.cs</DependentUpon>
     </EmbeddedResource>
@@ -66,6 +327,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="CSSPWebToolsDBEDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CSSPWebToolsDBEDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CSSPWebToolsDBEDM.edmx.diagram">
+      <DependentUpon>CSSPWebToolsDBEDM.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -80,8 +349,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSSPWebToolsDBEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CSSPWebToolsDBEDM.Context.cs</LastGenOutput>
+      <DependentUpon>CSSPWebToolsDBEDM.edmx</DependentUpon>
+    </Content>
+    <Content Include="CSSPWebToolsDBEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CSSPWebToolsDBEDM.edmx</DependentUpon>
+      <LastGenOutput>CSSPWebToolsDBEDM.cs</LastGenOutput>
+    </Content>
+    <Content Include="Full.png" />
+    <Content Include="FullAnnotated.png" />
     <Content Include="ShowGoogleMapPNG.html" />
-    <Content Include="WebsiteScreenshot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

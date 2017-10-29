@@ -468,20 +468,20 @@ namespace GoogleMapPNG
                     }
                 }
 
-                if (!GetGoogleImages())
-                {
-                    return;
-                }
+                //if (!GetGoogleImages())
+                //{
+                //    return;
+                //}
 
-                if (!CombineAllImageIntoOne())
-                {
-                    return;
-                }
+                //if (!CombineAllImageIntoOne())
+                //{
+                //    return;
+                //}
 
-                if (!DeleteTempGoogleImageFiles())
-                {
-                    return;
-                }
+                //if (!DeleteTempGoogleImageFiles())
+                //{
+                //    return;
+                //}
 
                 using (Bitmap targetAll = new Bitmap(DirName + FileNameFull))
                 {
@@ -501,21 +501,41 @@ namespace GoogleMapPNG
 
                         g.DrawPolygon(new Pen(Color.Orange, 2.0f), polygonPointList.ToArray());
 
-                        foreach (MapInfoPoint mapInfoPoint in mapInfoPointMWQMSiteList)
-                        {
-                            double LngX = ((mapInfoPoint.Lng - NewMapCoordinates.SouthWest.Longitude) / TotalWidthLng) * GoogleImageWidth * 2.0D;
-                            double LatY = ((GoogleImageHeight * 2) - GoogleLogoHeight) - ((TotalHeightLat - (NewMapCoordinates.NorthEast.Latitude - mapInfoPoint.Lat)) / TotalHeightLat) * ((GoogleImageHeight * 2) - GoogleLogoHeight);
+                        //foreach (MapInfoPoint mapInfoPoint in mapInfoPointMWQMSiteList)
+                        //{
+                        //    double LngX = ((mapInfoPoint.Lng - NewMapCoordinates.SouthWest.Longitude) / TotalWidthLng) * GoogleImageWidth * 2.0D;
+                        //    double LatY = ((GoogleImageHeight * 2) - GoogleLogoHeight) - ((TotalHeightLat - (NewMapCoordinates.NorthEast.Latitude - mapInfoPoint.Lat)) / TotalHeightLat) * ((GoogleImageHeight * 2) - GoogleLogoHeight);
 
-                            g.DrawEllipse(new Pen(Color.LightGreen, 1.0f), (int)LngX - 5, (int)LatY - 5, 10, 10);
-                        }
+                        //    g.DrawEllipse(new Pen(Color.LightGreen, 1.0f), (int)LngX - 5, (int)LatY - 5, 10, 10);
+                        //}
 
+                        Font font = new Font("Arial", 8, FontStyle.Regular);
+                        Brush brush = new SolidBrush(Color.LightGreen);
+
+                        int count = 0;
                         foreach (MapInfoPoint mapInfoPoint in mapInfoPointPolSourceSiteList)
                         {
+                            count += 1;
                             double LngX = ((mapInfoPoint.Lng - NewMapCoordinates.SouthWest.Longitude) / TotalWidthLng) * GoogleImageWidth * 2.0D;
                             double LatY = ((GoogleImageHeight * 2) - GoogleLogoHeight) - ((TotalHeightLat - (NewMapCoordinates.NorthEast.Latitude - mapInfoPoint.Lat)) / TotalHeightLat) * ((GoogleImageHeight * 2) - GoogleLogoHeight);
 
-                            g.DrawRectangle(new Pen(Color.LightPink, 1.0f), (int)LngX - 5, (int)LatY - 5, 10, 10);
+                            g.DrawPolygon(new Pen(Color.LightGreen, 1.0f), new List<Point>()
+                            {
+                                new Point() { X = (int)LngX - 3, Y = (int)LatY + 3 },
+                                new Point() { X = (int)LngX + 3, Y = (int)LatY + 3 },
+                                new Point() { X = (int)LngX, Y = (int)LatY - 3 },
+                                new Point() { X = (int)LngX - 3, Y = (int)LatY + 3 },
+                            }.ToArray());
+                            //SizeF sizeF = g.MeasureString(tvItemLanguageSubsector.TVText, font);
+                            g.DrawString(count.ToString(), font, brush, new Point((int)(LngX + 2), (int)(LatY + 5)));
+                            //g.DrawRectangle(new Pen(Color.LightPink, 1.0f), (int)LngX - 5, (int)LatY - 5, 10, 10);
                         }
+
+                        font = new Font("Arial", 24, FontStyle.Bold);
+                        brush = new SolidBrush(Color.LightBlue);
+
+                        SizeF sizeF = g.MeasureString(tvItemLanguageSubsector.TVText, font);
+                        g.DrawString(tvItemLanguageSubsector.TVText, font, brush, new Point(GoogleImageWidth - (int)(sizeF.Width/2), 3));
                     }
 
                     targetAll.Save(DirName + FileNameFull.Replace(".png", "Annotated.png"), ImageFormat.Png);

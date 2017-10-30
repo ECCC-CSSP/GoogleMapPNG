@@ -29,6 +29,8 @@ namespace GoogleMapPNG
         private string FileNameSW { get; set; } = @"SouthWest.png";
         private string FileNameSE { get; set; } = @"SouthEast.png";
         private string FileNameFull { get; set; } = @"Full.png";
+        private string FileNameInset { get; set; } = @"Inset.png";
+        private string FileNameInsetFinal { get; set; } = @"InsetFinal.png";
         private int GoogleImageWidth { get; set; }
         private int GoogleImageHeight { get; set; }
         private int GoogleLogoHeight { get; set; }
@@ -56,6 +58,13 @@ namespace GoogleMapPNG
         {
             lblStatus.Text = "Working...";
             CreatePNG();
+            lblStatus.Text = "Done...";
+        }
+        private void butGetInset_Click(object sender, EventArgs e)
+        {
+            lblStatus.Text = "Working...";
+            richTextBoxStatus.Text = "not implemented...";
+            //GetInset(CoordNE, CoordSW);
             lblStatus.Text = "Done...";
         }
         private void butSubsector_Click(object sender, EventArgs e)
@@ -254,6 +263,97 @@ namespace GoogleMapPNG
 
             return true;
         }
+        private bool GetInset(Coordinate CoordNE, Coordinate CoordSW)
+        {
+            double Lat = (CoordNE.Latitude + CoordSW.Latitude) / 2;
+            double Lng = (CoordNE.Longitude + CoordSW.Longitude) / 2;
+
+            MapType = textBoxMapType.Text; // Can be roadmap (default), satellite, hybrid, terrain
+            GoogleLogoHeight = 24;
+            int InsetZoom = 6;
+            int InsetWidth = 200;
+            int InsetHeight = 200;
+            LanguageRequest = textBoxLanguage.Text;
+
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    string url = $@"https://maps.googleapis.com/maps/api/staticmap?maptype={ MapType }&center={ Lat.ToString("F6") },{ Lng.ToString("F6") }&zoom={ InsetZoom.ToString() }&size={ InsetWidth.ToString() }x{ InsetHeight.ToString() }&language={ LanguageRequest }";
+                    lblStatus.Text = $"Getting { url }";
+                    client.DownloadFile(url, DirName + FileNameInset);
+                }
+                catch (Exception ex)
+                {
+                    richTextBoxStatus.Text = ex.Message; // + ex.InnerException != null ? " Inner: " + ex.InnerException.Message : "";
+                }
+            }
+
+            Coordinate coordinate = new Coordinate(Lng, Lat);
+            MapCoordinates mapCoordinatesTemp = GoogleMapsAPI.GetBounds(coordinate, InsetZoom, InsetWidth, InsetHeight);
+
+            Rectangle cropRect = new Rectangle(0, 0, InsetWidth, InsetHeight);
+            using (Bitmap srcNewInset = new Bitmap(InsetWidth, InsetHeight))
+            {
+                using (Graphics g = Graphics.FromImage(srcNewInset))
+                {
+                    using (Bitmap srcInset = new Bitmap(DirName + FileNameInset))
+                    {
+                        g.DrawImage(srcInset, new Rectangle(0, 0, InsetWidth, InsetHeight), cropRect, GraphicsUnit.Pixel);
+                    }
+
+                    double LngX = 0.0D;
+                    double LatY = 0.0D;
+                    double TotalWidthLng = mapCoordinatesTemp.NorthEast.Longitude - mapCoordinatesTemp.SouthWest.Longitude;
+                    double TotalHeightLat = mapCoordinatesTemp.NorthEast.Latitude - mapCoordinatesTemp.SouthWest.Latitude;
+
+                    List<Point> polygonPointList = new List<Point>();
+                    // point #1
+                    LngX = ((CoordSW.Longitude - mapCoordinatesTemp.SouthWest.Longitude) / TotalWidthLng) * InsetWidth;
+                    LatY = InsetHeight - ((TotalHeightLat - (mapCoordinatesTemp.NorthEast.Latitude - CoordSW.Latitude)) / TotalHeightLat) * InsetHeight;
+                    polygonPointList.Add(new Point() { X = (int)LngX, Y = (int)LatY });
+                    // point #2
+                    LngX = ((CoordNE.Longitude - mapCoordinatesTemp.SouthWest.Longitude) / TotalWidthLng) * InsetWidth;
+                    LatY = InsetHeight - ((TotalHeightLat - (mapCoordinatesTemp.NorthEast.Latitude - CoordSW.Latitude)) / TotalHeightLat) * InsetHeight;
+                    polygonPointList.Add(new Point() { X = (int)LngX, Y = (int)LatY });
+                    // point #3
+                    LngX = ((CoordNE.Longitude - mapCoordinatesTemp.SouthWest.Longitude) / TotalWidthLng) * InsetWidth;
+                    LatY = InsetHeight - ((TotalHeightLat - (mapCoordinatesTemp.NorthEast.Latitude - CoordNE.Latitude)) / TotalHeightLat) * InsetHeight;
+                    polygonPointList.Add(new Point() { X = (int)LngX, Y = (int)LatY });
+                    // point #4
+                    LngX = ((CoordSW.Longitude - mapCoordinatesTemp.SouthWest.Longitude) / TotalWidthLng) * InsetWidth;
+                    LatY = InsetHeight - ((TotalHeightLat - (mapCoordinatesTemp.NorthEast.Latitude - CoordNE.Latitude)) / TotalHeightLat) * InsetHeight;
+                    polygonPointList.Add(new Point() { X = (int)LngX, Y = (int)LatY });
+                    // point #5
+                    LngX = ((CoordSW.Longitude - mapCoordinatesTemp.SouthWest.Longitude) / TotalWidthLng) * InsetWidth;
+                    LatY = InsetHeight - ((TotalHeightLat - (mapCoordinatesTemp.NorthEast.Latitude - CoordSW.Latitude)) / TotalHeightLat) * InsetHeight;
+                    polygonPointList.Add(new Point() { X = (int)LngX, Y = (int)LatY });
+
+                    g.DrawPolygon(new Pen(Color.LightGreen, 1.0f), polygonPointList.ToArray());
+                }
+
+                srcNewInset.Save(DirName + FileNameInsetFinal, ImageFormat.Png);
+            }
+
+
+            cropRect = new Rectangle(0, 0, InsetWidth, InsetHeight - GoogleLogoHeight);
+
+            using (Bitmap targetInsetFinal = new Bitmap(cropRect.Width, cropRect.Height))
+            {
+                using (Graphics g = Graphics.FromImage(targetInsetFinal))
+                {
+                    using (Bitmap srcInset = new Bitmap(DirName + FileNameInsetFinal))
+                    {
+                        g.DrawImage(srcInset, new Rectangle(0, 0, targetInsetFinal.Width, targetInsetFinal.Height), cropRect, GraphicsUnit.Pixel);
+
+                        g.DrawRectangle(new Pen(Color.Black, 6.0f), cropRect);
+                    }
+                }
+                targetInsetFinal.Save(DirName + FileNameInsetFinal, ImageFormat.Png);
+            }
+
+            return true;
+        }
         private void ShowPoint(double Lat, double Lng)
         {
             CenterLat = double.Parse(textBoxCenterLat.Text);
@@ -311,7 +411,7 @@ namespace GoogleMapPNG
         {
             using (CSSPWebToolsDBEntities db = new CSSPWebToolsDBEntities())
             {
-             
+
                 var objSubsector = (from c in db.TVItems
                                     from cl in db.TVItemLanguages
                                     where c.TVItemID == cl.TVItemID
@@ -342,11 +442,15 @@ namespace GoogleMapPNG
                     return;
                 }
 
+                double MaxLat = mapInfoPointPolygon.Select(c => c.Lat).Max();
+                double MinLat = mapInfoPointPolygon.Select(c => c.Lat).Min();
+                double MaxLng = mapInfoPointPolygon.Select(c => c.Lng).Max();
+                double MinLng = mapInfoPointPolygon.Select(c => c.Lng).Min();
 
                 List<MapInfoPoint> mapInfoPointMWQMSiteList = (from mi in db.MapInfos
                                                                from mip in db.MapInfoPoints
                                                                from t in db.TVItems
-                                                               where mi.TVItemID ==  t.TVItemID
+                                                               where mi.TVItemID == t.TVItemID
                                                                && mi.MapInfoID == mip.MapInfoID
                                                                && mi.MapInfoDrawType == (int)MapInfoDrawTypeEnum.Point
                                                                && t.ParentID == tvItemSubsector.TVItemID
@@ -354,11 +458,6 @@ namespace GoogleMapPNG
                                                                && mi.TVType == (int)TVTypeEnum.MWQMSite
                                                                && t.IsActive == true
                                                                select mip).ToList();
-
-                double MaxLat = mapInfoPointPolygon.Select(c => c.Lat).Max();
-                double MinLat = mapInfoPointPolygon.Select(c => c.Lat).Min();
-                double MaxLng = mapInfoPointPolygon.Select(c => c.Lng).Max();
-                double MinLng = mapInfoPointPolygon.Select(c => c.Lng).Min();
 
                 if (mapInfoPointMWQMSiteList.Count > 0)
                 {
@@ -369,16 +468,16 @@ namespace GoogleMapPNG
                 }
 
                 List<MapInfoPoint> mapInfoPointPolSourceSiteList = (from mi in db.MapInfos
-                                                               from mip in db.MapInfoPoints
-                                                               from t in db.TVItems
-                                                               where mi.TVItemID == t.TVItemID
-                                                               && mi.MapInfoID == mip.MapInfoID
-                                                               && mi.MapInfoDrawType == (int)MapInfoDrawTypeEnum.Point
-                                                               && t.ParentID == tvItemSubsector.TVItemID
-                                                               && t.TVType == (int)TVTypeEnum.PolSourceSite
-                                                               && mi.TVType == (int)TVTypeEnum.PolSourceSite
-                                                               && t.IsActive == true
-                                                               select mip).ToList();
+                                                                    from mip in db.MapInfoPoints
+                                                                    from t in db.TVItems
+                                                                    where mi.TVItemID == t.TVItemID
+                                                                    && mi.MapInfoID == mip.MapInfoID
+                                                                    && mi.MapInfoDrawType == (int)MapInfoDrawTypeEnum.Point
+                                                                    && t.ParentID == tvItemSubsector.TVItemID
+                                                                    && t.TVType == (int)TVTypeEnum.PolSourceSite
+                                                                    && mi.TVType == (int)TVTypeEnum.PolSourceSite
+                                                                    && t.IsActive == true
+                                                                    select mip).ToList();
 
                 if (mapInfoPointMWQMSiteList.Count > 0)
                 {
@@ -468,27 +567,41 @@ namespace GoogleMapPNG
                     }
                 }
 
-                //if (!GetGoogleImages())
-                //{
-                //    return;
-                //}
+                if (!GetGoogleImages())
+                {
+                    return;
+                }
 
-                //if (!CombineAllImageIntoOne())
-                //{
-                //    return;
-                //}
+                if (!CombineAllImageIntoOne())
+                {
+                    return;
+                }
 
-                //if (!DeleteTempGoogleImageFiles())
-                //{
-                //    return;
-                //}
+                if (!DeleteTempGoogleImageFiles())
+                {
+                    return;
+                }
+
+                if (!GetInset(NewMapCoordinates.NorthEast, NewMapCoordinates.SouthWest))
+                {
+                    return;
+                }
 
                 using (Bitmap targetAll = new Bitmap(DirName + FileNameFull))
                 {
-                    List<Point> polygonPointList = new List<Point>();
-
                     using (Graphics g = Graphics.FromImage(targetAll))
                     {
+                        using (Bitmap targetImg = new Bitmap(DirName + FileNameInsetFinal))
+                        {
+                            g.DrawImage(targetImg, new Point(0, 0));
+                        }
+
+                        #region Draw Image Border
+                        #endregion Draw Image Border
+                        g.DrawRectangle(new Pen(Color.Black, 6.0f), 0, 0, GoogleImageWidth*2, GoogleImageHeight*2 - GoogleLogoHeight);
+                        #region Draw Subsector Polygon
+                        List<Point> polygonPointList = new List<Point>();
+
                         double TotalWidthLng = NewMapCoordinates.NorthEast.Longitude - NewMapCoordinates.SouthWest.Longitude;
                         double TotalHeightLat = NewMapCoordinates.NorthEast.Latitude - NewMapCoordinates.SouthWest.Latitude;
 
@@ -500,15 +613,19 @@ namespace GoogleMapPNG
                         }
 
                         g.DrawPolygon(new Pen(Color.Orange, 2.0f), polygonPointList.ToArray());
+                        #endregion Draw Subsector Polygon
 
-                        //foreach (MapInfoPoint mapInfoPoint in mapInfoPointMWQMSiteList)
-                        //{
-                        //    double LngX = ((mapInfoPoint.Lng - NewMapCoordinates.SouthWest.Longitude) / TotalWidthLng) * GoogleImageWidth * 2.0D;
-                        //    double LatY = ((GoogleImageHeight * 2) - GoogleLogoHeight) - ((TotalHeightLat - (NewMapCoordinates.NorthEast.Latitude - mapInfoPoint.Lat)) / TotalHeightLat) * ((GoogleImageHeight * 2) - GoogleLogoHeight);
+                        #region Draw Subsector MWQMSite
+                        foreach (MapInfoPoint mapInfoPoint in mapInfoPointMWQMSiteList)
+                        {
+                            double LngX = ((mapInfoPoint.Lng - NewMapCoordinates.SouthWest.Longitude) / TotalWidthLng) * GoogleImageWidth * 2.0D;
+                            double LatY = ((GoogleImageHeight * 2) - GoogleLogoHeight) - ((TotalHeightLat - (NewMapCoordinates.NorthEast.Latitude - mapInfoPoint.Lat)) / TotalHeightLat) * ((GoogleImageHeight * 2) - GoogleLogoHeight);
 
-                        //    g.DrawEllipse(new Pen(Color.LightGreen, 1.0f), (int)LngX - 5, (int)LatY - 5, 10, 10);
-                        //}
+                            g.DrawEllipse(new Pen(Color.LightGreen, 1.0f), (int)LngX - 5, (int)LatY - 5, 10, 10);
+                        }
+                        #endregion Draw Subsector MWQMSite
 
+                        #region Draw Subsector PolSourceSite
                         Font font = new Font("Arial", 8, FontStyle.Regular);
                         Brush brush = new SolidBrush(Color.LightGreen);
 
@@ -519,6 +636,7 @@ namespace GoogleMapPNG
                             double LngX = ((mapInfoPoint.Lng - NewMapCoordinates.SouthWest.Longitude) / TotalWidthLng) * GoogleImageWidth * 2.0D;
                             double LatY = ((GoogleImageHeight * 2) - GoogleLogoHeight) - ((TotalHeightLat - (NewMapCoordinates.NorthEast.Latitude - mapInfoPoint.Lat)) / TotalHeightLat) * ((GoogleImageHeight * 2) - GoogleLogoHeight);
 
+                            // drawing triangle
                             g.DrawPolygon(new Pen(Color.LightGreen, 1.0f), new List<Point>()
                             {
                                 new Point() { X = (int)LngX - 3, Y = (int)LatY + 3 },
@@ -526,16 +644,43 @@ namespace GoogleMapPNG
                                 new Point() { X = (int)LngX, Y = (int)LatY - 3 },
                                 new Point() { X = (int)LngX - 3, Y = (int)LatY + 3 },
                             }.ToArray());
-                            //SizeF sizeF = g.MeasureString(tvItemLanguageSubsector.TVText, font);
-                            g.DrawString(count.ToString(), font, brush, new Point((int)(LngX + 2), (int)(LatY + 5)));
-                            //g.DrawRectangle(new Pen(Color.LightPink, 1.0f), (int)LngX - 5, (int)LatY - 5, 10, 10);
-                        }
 
+                            g.DrawString(count.ToString(), font, brush, new Point((int)(LngX + 2), (int)(LatY + 5)));
+                        }
+                        #endregion Draw Subsector PolSourceSite
+
+                        #region Draw Subsector Title
                         font = new Font("Arial", 24, FontStyle.Bold);
                         brush = new SolidBrush(Color.LightBlue);
 
-                        SizeF sizeF = g.MeasureString(tvItemLanguageSubsector.TVText, font);
-                        g.DrawString(tvItemLanguageSubsector.TVText, font, brush, new Point(GoogleImageWidth - (int)(sizeF.Width/2), 3));
+                        string TVText = tvItemLanguageSubsector.TVText;
+                        SizeF sizeFInit = g.MeasureString(TVText, font);
+                        SizeF sizeF = g.MeasureString(TVText, font);
+                        while (true)
+                        {
+                            sizeF = g.MeasureString(TVText, font);
+                            if (sizeF.Width > (GoogleImageWidth * 2 - 200 - 200 - 100)) // 200 is the Inset and Legend width
+                            {
+                                TVText = TVText.Substring(0, TVText.Length - 2);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        if (sizeFInit.Width != sizeF.Width)
+                        {
+                            TVText = TVText + "...";
+                        }
+                        g.DrawString(TVText, font, brush, new Point(GoogleImageWidth - (int)(sizeF.Width / 2), 3));
+                        #endregion Draw Subsector Title
+
+                        #region Draw Legend
+                        g.DrawRectangle(new Pen(Color.LightGreen, 6.0f), GoogleImageWidth * 2 - 200, 100, 195, 400);
+
+                        brush = new SolidBrush(Color.White);
+                        g.FillRectangle(brush, GoogleImageWidth*2 - 200, 100, 195, 400);
+                        #endregion Draw Legend
                     }
 
                     targetAll.Save(DirName + FileNameFull.Replace(".png", "Annotated.png"), ImageFormat.Png);
@@ -545,6 +690,8 @@ namespace GoogleMapPNG
                 webBrowserPNG.Navigate(@"C:\CSSP Latest Code Old\GoogleMapPNG\GoogleMapPNG\ShowGoogleMapPNG.html");
             }
         }
+
+
         #endregion Functions private
 
     }

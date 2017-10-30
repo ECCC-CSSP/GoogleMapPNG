@@ -56,6 +56,7 @@
             this.textBoxSubsector = new System.Windows.Forms.TextBox();
             this.lblSubsector = new System.Windows.Forms.Label();
             this.butSubsector = new System.Windows.Forms.Button();
+            this.butGetInset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblURL
@@ -300,6 +301,16 @@
             this.butSubsector.UseVisualStyleBackColor = true;
             this.butSubsector.Click += new System.EventHandler(this.butSubsector_Click);
             // 
+            // butGetInset
+            // 
+            this.butGetInset.Location = new System.Drawing.Point(28, 509);
+            this.butGetInset.Name = "butGetInset";
+            this.butGetInset.Size = new System.Drawing.Size(94, 23);
+            this.butGetInset.TabIndex = 20;
+            this.butGetInset.Text = "Get Inset";
+            this.butGetInset.UseVisualStyleBackColor = true;
+            this.butGetInset.Click += new System.EventHandler(this.butGetInset_Click);
+            // 
             // GoogleMapPNG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,6 +330,7 @@
             this.Controls.Add(this.textBoxXSize);
             this.Controls.Add(this.lblXSize);
             this.Controls.Add(this.webBrowserPNG);
+            this.Controls.Add(this.butGetInset);
             this.Controls.Add(this.butSubsector);
             this.Controls.Add(this.butShowPoint);
             this.Controls.Add(this.butCreatePNG);
@@ -369,6 +381,7 @@
         private System.Windows.Forms.TextBox textBoxSubsector;
         private System.Windows.Forms.Label lblSubsector;
         private System.Windows.Forms.Button butSubsector;
+        private System.Windows.Forms.Button butGetInset;
     }
 }
 

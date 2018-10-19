@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSSPWebToolsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CSSPDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Addresses">
           <Key>
             <PropertyRef Name="AddressID" />
@@ -2581,7 +2581,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CSSPWebToolsDBModelStoreContainer">
+        <EntityContainer Name="CSSPDBModelStoreContainer">
           <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppErrLogs" EntityType="Self.AppErrLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppTaskLanguages" EntityType="Self.AppTaskLanguages" Schema="dbo" store:Type="Tables" />
@@ -3061,7 +3061,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CSSPWebToolsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CSSPDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="AddressID" />
@@ -5802,7 +5802,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CSSPWebToolsDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CSSPDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="AppErrLogs" EntityType="Self.AppErrLog" />
           <EntitySet Name="AppTaskLanguages" EntityType="Self.AppTaskLanguage" />
@@ -6278,9 +6278,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CSSPWebToolsDBModelStoreContainer" CdmEntityContainer="CSSPWebToolsDBEntities">
+        <EntityContainerMapping StorageEntityContainer="CSSPDBModelStoreContainer" CdmEntityContainer="CSSPDBEntities">
           <EntitySetMapping Name="Addresses">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.Address">
+            <EntityTypeMapping TypeName="CSSPDBModel.Address">
               <MappingFragment StoreEntitySet="Addresses">
                 <ScalarProperty Name="AddressID" ColumnName="AddressID" />
                 <ScalarProperty Name="AddressTVItemID" ColumnName="AddressTVItemID" />
@@ -6299,7 +6299,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AppErrLogs">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.AppErrLog">
+            <EntityTypeMapping TypeName="CSSPDBModel.AppErrLog">
               <MappingFragment StoreEntitySet="AppErrLogs">
                 <ScalarProperty Name="AppErrLogID" ColumnName="AppErrLogID" />
                 <ScalarProperty Name="Tag" ColumnName="Tag" />
@@ -6313,7 +6313,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AppTaskLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.AppTaskLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.AppTaskLanguage">
               <MappingFragment StoreEntitySet="AppTaskLanguages">
                 <ScalarProperty Name="AppTaskLanguageID" ColumnName="AppTaskLanguageID" />
                 <ScalarProperty Name="AppTaskID" ColumnName="AppTaskID" />
@@ -6327,7 +6327,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AppTasks">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.AppTask">
+            <EntityTypeMapping TypeName="CSSPDBModel.AppTask">
               <MappingFragment StoreEntitySet="AppTasks">
                 <ScalarProperty Name="AppTaskID" ColumnName="AppTaskID" />
                 <ScalarProperty Name="TVItemID" ColumnName="TVItemID" />
@@ -6347,7 +6347,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.AspNetRole">
+            <EntityTypeMapping TypeName="CSSPDBModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -6355,7 +6355,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.AspNetUserClaim">
+            <EntityTypeMapping TypeName="CSSPDBModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -6365,7 +6365,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.AspNetUserLogin">
+            <EntityTypeMapping TypeName="CSSPDBModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -6374,7 +6374,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.AspNetUser">
+            <EntityTypeMapping TypeName="CSSPDBModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -6392,7 +6392,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BoxModelLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.BoxModelLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.BoxModelLanguage">
               <MappingFragment StoreEntitySet="BoxModelLanguages">
                 <ScalarProperty Name="BoxModelLanguageID" ColumnName="BoxModelLanguageID" />
                 <ScalarProperty Name="BoxModelID" ColumnName="BoxModelID" />
@@ -6405,7 +6405,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BoxModelResults">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.BoxModelResult">
+            <EntityTypeMapping TypeName="CSSPDBModel.BoxModelResult">
               <MappingFragment StoreEntitySet="BoxModelResults">
                 <ScalarProperty Name="BoxModelResultID" ColumnName="BoxModelResultID" />
                 <ScalarProperty Name="BoxModelID" ColumnName="BoxModelID" />
@@ -6429,7 +6429,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BoxModels">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.BoxModel">
+            <EntityTypeMapping TypeName="CSSPDBModel.BoxModel">
               <MappingFragment StoreEntitySet="BoxModels">
                 <ScalarProperty Name="BoxModelID" ColumnName="BoxModelID" />
                 <ScalarProperty Name="InfrastructureTVItemID" ColumnName="InfrastructureTVItemID" />
@@ -6449,7 +6449,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClimateDataValues">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.ClimateDataValue">
+            <EntityTypeMapping TypeName="CSSPDBModel.ClimateDataValue">
               <MappingFragment StoreEntitySet="ClimateDataValues">
                 <ScalarProperty Name="ClimateDataValueID" ColumnName="ClimateDataValueID" />
                 <ScalarProperty Name="ClimateSiteID" ColumnName="ClimateSiteID" />
@@ -6474,7 +6474,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClimateSites">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.ClimateSite">
+            <EntityTypeMapping TypeName="CSSPDBModel.ClimateSite">
               <MappingFragment StoreEntitySet="ClimateSites">
                 <ScalarProperty Name="ClimateSiteID" ColumnName="ClimateSiteID" />
                 <ScalarProperty Name="ClimateSiteTVItemID" ColumnName="ClimateSiteTVItemID" />
@@ -6504,7 +6504,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ContactPreferences">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.ContactPreference">
+            <EntityTypeMapping TypeName="CSSPDBModel.ContactPreference">
               <MappingFragment StoreEntitySet="ContactPreferences">
                 <ScalarProperty Name="ContactPreferenceID" ColumnName="ContactPreferenceID" />
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
@@ -6516,7 +6516,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.Contact">
+            <EntityTypeMapping TypeName="CSSPDBModel.Contact">
               <MappingFragment StoreEntitySet="Contacts">
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -6540,7 +6540,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ContactShortcuts">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.ContactShortcut">
+            <EntityTypeMapping TypeName="CSSPDBModel.ContactShortcut">
               <MappingFragment StoreEntitySet="ContactShortcuts">
                 <ScalarProperty Name="ContactShortcutID" ColumnName="ContactShortcutID" />
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
@@ -6552,7 +6552,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DocTemplates">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.DocTemplate">
+            <EntityTypeMapping TypeName="CSSPDBModel.DocTemplate">
               <MappingFragment StoreEntitySet="DocTemplates">
                 <ScalarProperty Name="DocTemplateID" ColumnName="DocTemplateID" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
@@ -6565,7 +6565,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmailDistributionListContactLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.EmailDistributionListContactLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.EmailDistributionListContactLanguage">
               <MappingFragment StoreEntitySet="EmailDistributionListContactLanguages">
                 <ScalarProperty Name="EmailDistributionListContactLanguageID" ColumnName="EmailDistributionListContactLanguageID" />
                 <ScalarProperty Name="EmailDistributionListContactID" ColumnName="EmailDistributionListContactID" />
@@ -6578,7 +6578,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmailDistributionListContacts">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.EmailDistributionListContact">
+            <EntityTypeMapping TypeName="CSSPDBModel.EmailDistributionListContact">
               <MappingFragment StoreEntitySet="EmailDistributionListContacts">
                 <ScalarProperty Name="EmailDistributionListContactID" ColumnName="EmailDistributionListContactID" />
                 <ScalarProperty Name="EmailDistributionListID" ColumnName="EmailDistributionListID" />
@@ -6596,7 +6596,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmailDistributionListLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.EmailDistributionListLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.EmailDistributionListLanguage">
               <MappingFragment StoreEntitySet="EmailDistributionListLanguages">
                 <ScalarProperty Name="EmailDistributionListLanguageID" ColumnName="EmailDistributionListLanguageID" />
                 <ScalarProperty Name="EmailDistributionListID" ColumnName="EmailDistributionListID" />
@@ -6609,7 +6609,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmailDistributionLists">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.EmailDistributionList">
+            <EntityTypeMapping TypeName="CSSPDBModel.EmailDistributionList">
               <MappingFragment StoreEntitySet="EmailDistributionLists">
                 <ScalarProperty Name="EmailDistributionListID" ColumnName="EmailDistributionListID" />
                 <ScalarProperty Name="CountryTVItemID" ColumnName="CountryTVItemID" />
@@ -6620,7 +6620,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Emails">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.Email">
+            <EntityTypeMapping TypeName="CSSPDBModel.Email">
               <MappingFragment StoreEntitySet="Emails">
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
                 <ScalarProperty Name="EmailTVItemID" ColumnName="EmailTVItemID" />
@@ -6632,7 +6632,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HydrometricDataValues">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.HydrometricDataValue">
+            <EntityTypeMapping TypeName="CSSPDBModel.HydrometricDataValue">
               <MappingFragment StoreEntitySet="HydrometricDataValues">
                 <ScalarProperty Name="HydrometricDataValueID" ColumnName="HydrometricDataValueID" />
                 <ScalarProperty Name="HydrometricSiteID" ColumnName="HydrometricSiteID" />
@@ -6647,7 +6647,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HydrometricSites">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.HydrometricSite">
+            <EntityTypeMapping TypeName="CSSPDBModel.HydrometricSite">
               <MappingFragment StoreEntitySet="HydrometricSites">
                 <ScalarProperty Name="HydrometricSiteID" ColumnName="HydrometricSiteID" />
                 <ScalarProperty Name="HydrometricSiteTVItemID" ColumnName="HydrometricSiteTVItemID" />
@@ -6673,7 +6673,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InfrastructureLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.InfrastructureLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.InfrastructureLanguage">
               <MappingFragment StoreEntitySet="InfrastructureLanguages">
                 <ScalarProperty Name="InfrastructureLanguageID" ColumnName="InfrastructureLanguageID" />
                 <ScalarProperty Name="InfrastructureID" ColumnName="InfrastructureID" />
@@ -6686,7 +6686,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Infrastructures">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.Infrastructure">
+            <EntityTypeMapping TypeName="CSSPDBModel.Infrastructure">
               <MappingFragment StoreEntitySet="Infrastructures">
                 <ScalarProperty Name="InfrastructureID" ColumnName="InfrastructureID" />
                 <ScalarProperty Name="InfrastructureTVItemID" ColumnName="InfrastructureTVItemID" />
@@ -6740,7 +6740,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LabSheetDetails">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.LabSheetDetail">
+            <EntityTypeMapping TypeName="CSSPDBModel.LabSheetDetail">
               <MappingFragment StoreEntitySet="LabSheetDetails">
                 <ScalarProperty Name="LabSheetDetailID" ColumnName="LabSheetDetailID" />
                 <ScalarProperty Name="LabSheetID" ColumnName="LabSheetID" />
@@ -6811,7 +6811,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LabSheets">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.LabSheet">
+            <EntityTypeMapping TypeName="CSSPDBModel.LabSheet">
               <MappingFragment StoreEntitySet="LabSheets">
                 <ScalarProperty Name="LabSheetID" ColumnName="LabSheetID" />
                 <ScalarProperty Name="OtherServerLabSheetID" ColumnName="OtherServerLabSheetID" />
@@ -6839,7 +6839,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LabSheetTubeMPNDetails">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.LabSheetTubeMPNDetail">
+            <EntityTypeMapping TypeName="CSSPDBModel.LabSheetTubeMPNDetail">
               <MappingFragment StoreEntitySet="LabSheetTubeMPNDetails">
                 <ScalarProperty Name="LabSheetTubeMPNDetailID" ColumnName="LabSheetTubeMPNDetailID" />
                 <ScalarProperty Name="LabSheetDetailID" ColumnName="LabSheetDetailID" />
@@ -6861,7 +6861,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Logs">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.Log">
+            <EntityTypeMapping TypeName="CSSPDBModel.Log">
               <MappingFragment StoreEntitySet="Logs">
                 <ScalarProperty Name="LogID" ColumnName="LogID" />
                 <ScalarProperty Name="TableName" ColumnName="TableName" />
@@ -6874,7 +6874,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MapInfoPoints">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MapInfoPoint">
+            <EntityTypeMapping TypeName="CSSPDBModel.MapInfoPoint">
               <MappingFragment StoreEntitySet="MapInfoPoints">
                 <ScalarProperty Name="MapInfoPointID" ColumnName="MapInfoPointID" />
                 <ScalarProperty Name="MapInfoID" ColumnName="MapInfoID" />
@@ -6887,7 +6887,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MapInfos">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MapInfo">
+            <EntityTypeMapping TypeName="CSSPDBModel.MapInfo">
               <MappingFragment StoreEntitySet="MapInfos">
                 <ScalarProperty Name="MapInfoID" ColumnName="MapInfoID" />
                 <ScalarProperty Name="TVItemID" ColumnName="TVItemID" />
@@ -6903,7 +6903,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MikeBoundaryConditions">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MikeBoundaryCondition">
+            <EntityTypeMapping TypeName="CSSPDBModel.MikeBoundaryCondition">
               <MappingFragment StoreEntitySet="MikeBoundaryConditions">
                 <ScalarProperty Name="MikeBoundaryConditionID" ColumnName="MikeBoundaryConditionID" />
                 <ScalarProperty Name="MikeBoundaryConditionTVItemID" ColumnName="MikeBoundaryConditionTVItemID" />
@@ -6922,7 +6922,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MikeScenarios">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MikeScenario">
+            <EntityTypeMapping TypeName="CSSPDBModel.MikeScenario">
               <MappingFragment StoreEntitySet="MikeScenarios">
                 <ScalarProperty Name="MikeScenarioID" ColumnName="MikeScenarioID" />
                 <ScalarProperty Name="MikeScenarioTVItemID" ColumnName="MikeScenarioTVItemID" />
@@ -6956,7 +6956,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MikeSources">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MikeSource">
+            <EntityTypeMapping TypeName="CSSPDBModel.MikeSource">
               <MappingFragment StoreEntitySet="MikeSources">
                 <ScalarProperty Name="MikeSourceID" ColumnName="MikeSourceID" />
                 <ScalarProperty Name="MikeSourceTVItemID" ColumnName="MikeSourceTVItemID" />
@@ -6970,7 +6970,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MikeSourceStartEnds">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MikeSourceStartEnd">
+            <EntityTypeMapping TypeName="CSSPDBModel.MikeSourceStartEnd">
               <MappingFragment StoreEntitySet="MikeSourceStartEnds">
                 <ScalarProperty Name="MikeSourceStartEndID" ColumnName="MikeSourceStartEndID" />
                 <ScalarProperty Name="MikeSourceID" ColumnName="MikeSourceID" />
@@ -6990,7 +6990,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMAnalysisReportParameters">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMAnalysisReportParameter">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMAnalysisReportParameter">
               <MappingFragment StoreEntitySet="MWQMAnalysisReportParameters">
                 <ScalarProperty Name="MWQMAnalysisReportParameterID" ColumnName="MWQMAnalysisReportParameterID" />
                 <ScalarProperty Name="SubsectorTVItemID" ColumnName="SubsectorTVItemID" />
@@ -7022,7 +7022,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMLookupMPNs">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMLookupMPN">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMLookupMPN">
               <MappingFragment StoreEntitySet="MWQMLookupMPNs">
                 <ScalarProperty Name="MWQMLookupMPNID" ColumnName="MWQMLookupMPNID" />
                 <ScalarProperty Name="Tubes10" ColumnName="Tubes10" />
@@ -7035,7 +7035,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMRunLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMRunLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMRunLanguage">
               <MappingFragment StoreEntitySet="MWQMRunLanguages">
                 <ScalarProperty Name="MWQMRunLanguageID" ColumnName="MWQMRunLanguageID" />
                 <ScalarProperty Name="MWQMRunID" ColumnName="MWQMRunID" />
@@ -7050,7 +7050,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMRuns">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMRun">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMRun">
               <MappingFragment StoreEntitySet="MWQMRuns">
                 <ScalarProperty Name="MWQMRunID" ColumnName="MWQMRunID" />
                 <ScalarProperty Name="SubsectorTVItemID" ColumnName="SubsectorTVItemID" />
@@ -7098,7 +7098,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMSampleLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMSampleLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMSampleLanguage">
               <MappingFragment StoreEntitySet="MWQMSampleLanguages">
                 <ScalarProperty Name="MWQMSampleLanguageID" ColumnName="MWQMSampleLanguageID" />
                 <ScalarProperty Name="MWQMSampleID" ColumnName="MWQMSampleID" />
@@ -7111,7 +7111,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMSamples">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMSample">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMSample">
               <MappingFragment StoreEntitySet="MWQMSamples">
                 <ScalarProperty Name="MWQMSampleID" ColumnName="MWQMSampleID" />
                 <ScalarProperty Name="MWQMSiteTVItemID" ColumnName="MWQMSiteTVItemID" />
@@ -7134,7 +7134,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMSites">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMSite">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMSite">
               <MappingFragment StoreEntitySet="MWQMSites">
                 <ScalarProperty Name="MWQMSiteID" ColumnName="MWQMSiteID" />
                 <ScalarProperty Name="MWQMSiteTVItemID" ColumnName="MWQMSiteTVItemID" />
@@ -7148,7 +7148,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMSiteStartEndDates">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMSiteStartEndDate">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMSiteStartEndDate">
               <MappingFragment StoreEntitySet="MWQMSiteStartEndDates">
                 <ScalarProperty Name="MWQMSiteStartEndDateID" ColumnName="MWQMSiteStartEndDateID" />
                 <ScalarProperty Name="MWQMSiteTVItemID" ColumnName="MWQMSiteTVItemID" />
@@ -7160,7 +7160,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMSubsectorLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMSubsectorLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMSubsectorLanguage">
               <MappingFragment StoreEntitySet="MWQMSubsectorLanguages">
                 <ScalarProperty Name="MWQMSubsectorLanguageID" ColumnName="MWQMSubsectorLanguageID" />
                 <ScalarProperty Name="MWQMSubsectorID" ColumnName="MWQMSubsectorID" />
@@ -7175,7 +7175,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MWQMSubsectors">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.MWQMSubsector">
+            <EntityTypeMapping TypeName="CSSPDBModel.MWQMSubsector">
               <MappingFragment StoreEntitySet="MWQMSubsectors">
                 <ScalarProperty Name="MWQMSubsectorID" ColumnName="MWQMSubsectorID" />
                 <ScalarProperty Name="MWQMSubsectorTVItemID" ColumnName="MWQMSubsectorTVItemID" />
@@ -7187,7 +7187,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PolSourceObservationIssues">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.PolSourceObservationIssue">
+            <EntityTypeMapping TypeName="CSSPDBModel.PolSourceObservationIssue">
               <MappingFragment StoreEntitySet="PolSourceObservationIssues">
                 <ScalarProperty Name="PolSourceObservationIssueID" ColumnName="PolSourceObservationIssueID" />
                 <ScalarProperty Name="PolSourceObservationID" ColumnName="PolSourceObservationID" />
@@ -7199,7 +7199,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PolSourceObservations">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.PolSourceObservation">
+            <EntityTypeMapping TypeName="CSSPDBModel.PolSourceObservation">
               <MappingFragment StoreEntitySet="PolSourceObservations">
                 <ScalarProperty Name="PolSourceObservationID" ColumnName="PolSourceObservationID" />
                 <ScalarProperty Name="PolSourceSiteID" ColumnName="PolSourceSiteID" />
@@ -7212,7 +7212,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PolSourceSites">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.PolSourceSite">
+            <EntityTypeMapping TypeName="CSSPDBModel.PolSourceSite">
               <MappingFragment StoreEntitySet="PolSourceSites">
                 <ScalarProperty Name="PolSourceSiteID" ColumnName="PolSourceSiteID" />
                 <ScalarProperty Name="PolSourceSiteTVItemID" ColumnName="PolSourceSiteTVItemID" />
@@ -7229,7 +7229,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RainExceedances">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.RainExceedance">
+            <EntityTypeMapping TypeName="CSSPDBModel.RainExceedance">
               <MappingFragment StoreEntitySet="RainExceedances">
                 <ScalarProperty Name="RainExceedanceID" ColumnName="RainExceedanceID" />
                 <ScalarProperty Name="YearRound" ColumnName="YearRound" />
@@ -7249,7 +7249,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RatingCurves">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.RatingCurve">
+            <EntityTypeMapping TypeName="CSSPDBModel.RatingCurve">
               <MappingFragment StoreEntitySet="RatingCurves">
                 <ScalarProperty Name="RatingCurveID" ColumnName="RatingCurveID" />
                 <ScalarProperty Name="HydrometricSiteID" ColumnName="HydrometricSiteID" />
@@ -7260,7 +7260,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RatingCurveValues">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.RatingCurveValue">
+            <EntityTypeMapping TypeName="CSSPDBModel.RatingCurveValue">
               <MappingFragment StoreEntitySet="RatingCurveValues">
                 <ScalarProperty Name="RatingCurveValueID" ColumnName="RatingCurveValueID" />
                 <ScalarProperty Name="RatingCurveID" ColumnName="RatingCurveID" />
@@ -7272,7 +7272,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReportTypeLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.ReportTypeLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.ReportTypeLanguage">
               <MappingFragment StoreEntitySet="ReportTypeLanguages">
                 <ScalarProperty Name="ReportTypeLanguageID" ColumnName="ReportTypeLanguageID" />
                 <ScalarProperty Name="ReportTypeID" ColumnName="ReportTypeID" />
@@ -7289,7 +7289,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReportTypes">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.ReportType">
+            <EntityTypeMapping TypeName="CSSPDBModel.ReportType">
               <MappingFragment StoreEntitySet="ReportTypes">
                 <ScalarProperty Name="ReportTypeID" ColumnName="ReportTypeID" />
                 <ScalarProperty Name="TVType" ColumnName="TVType" />
@@ -7301,7 +7301,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ResetPasswords">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.ResetPassword">
+            <EntityTypeMapping TypeName="CSSPDBModel.ResetPassword">
               <MappingFragment StoreEntitySet="ResetPasswords">
                 <ScalarProperty Name="ResetPasswordID" ColumnName="ResetPasswordID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -7313,7 +7313,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SamplingPlans">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.SamplingPlan">
+            <EntityTypeMapping TypeName="CSSPDBModel.SamplingPlan">
               <MappingFragment StoreEntitySet="SamplingPlans">
                 <ScalarProperty Name="SamplingPlanID" ColumnName="SamplingPlanID" />
                 <ScalarProperty Name="SamplingPlanName" ColumnName="SamplingPlanName" />
@@ -7336,7 +7336,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SamplingPlanSubsectors">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.SamplingPlanSubsector">
+            <EntityTypeMapping TypeName="CSSPDBModel.SamplingPlanSubsector">
               <MappingFragment StoreEntitySet="SamplingPlanSubsectors">
                 <ScalarProperty Name="SamplingPlanSubsectorID" ColumnName="SamplingPlanSubsectorID" />
                 <ScalarProperty Name="SamplingPlanID" ColumnName="SamplingPlanID" />
@@ -7347,7 +7347,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SamplingPlanSubsectorSites">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.SamplingPlanSubsectorSite">
+            <EntityTypeMapping TypeName="CSSPDBModel.SamplingPlanSubsectorSite">
               <MappingFragment StoreEntitySet="SamplingPlanSubsectorSites">
                 <ScalarProperty Name="SamplingPlanSubsectorSiteID" ColumnName="SamplingPlanSubsectorSiteID" />
                 <ScalarProperty Name="SamplingPlanSubsectorID" ColumnName="SamplingPlanSubsectorID" />
@@ -7359,7 +7359,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpillLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.SpillLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.SpillLanguage">
               <MappingFragment StoreEntitySet="SpillLanguages">
                 <ScalarProperty Name="SpillLanguageID" ColumnName="SpillLanguageID" />
                 <ScalarProperty Name="SpillID" ColumnName="SpillID" />
@@ -7372,7 +7372,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Spills">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.Spill">
+            <EntityTypeMapping TypeName="CSSPDBModel.Spill">
               <MappingFragment StoreEntitySet="Spills">
                 <ScalarProperty Name="SpillID" ColumnName="SpillID" />
                 <ScalarProperty Name="MunicipalityTVItemID" ColumnName="MunicipalityTVItemID" />
@@ -7386,7 +7386,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tels">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.Tel">
+            <EntityTypeMapping TypeName="CSSPDBModel.Tel">
               <MappingFragment StoreEntitySet="Tels">
                 <ScalarProperty Name="TelID" ColumnName="TelID" />
                 <ScalarProperty Name="TelTVItemID" ColumnName="TelTVItemID" />
@@ -7398,7 +7398,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TideDataValues">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TideDataValue">
+            <EntityTypeMapping TypeName="CSSPDBModel.TideDataValue">
               <MappingFragment StoreEntitySet="TideDataValues">
                 <ScalarProperty Name="TideDataValueID" ColumnName="TideDataValueID" />
                 <ScalarProperty Name="TideSiteTVItemID" ColumnName="TideSiteTVItemID" />
@@ -7417,7 +7417,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TideLocations">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TideLocation">
+            <EntityTypeMapping TypeName="CSSPDBModel.TideLocation">
               <MappingFragment StoreEntitySet="TideLocations">
                 <ScalarProperty Name="TideLocationID" ColumnName="TideLocationID" />
                 <ScalarProperty Name="Zone" ColumnName="Zone" />
@@ -7430,7 +7430,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TideSites">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TideSite">
+            <EntityTypeMapping TypeName="CSSPDBModel.TideSite">
               <MappingFragment StoreEntitySet="TideSites">
                 <ScalarProperty Name="TideSiteID" ColumnName="TideSiteID" />
                 <ScalarProperty Name="TideSiteTVItemID" ColumnName="TideSiteTVItemID" />
@@ -7442,7 +7442,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVFileLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TVFileLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.TVFileLanguage">
               <MappingFragment StoreEntitySet="TVFileLanguages">
                 <ScalarProperty Name="TVFileLanguageID" ColumnName="TVFileLanguageID" />
                 <ScalarProperty Name="TVFileID" ColumnName="TVFileID" />
@@ -7455,7 +7455,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVFiles">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TVFile">
+            <EntityTypeMapping TypeName="CSSPDBModel.TVFile">
               <MappingFragment StoreEntitySet="TVFiles">
                 <ScalarProperty Name="TVFileID" ColumnName="TVFileID" />
                 <ScalarProperty Name="TVFileTVItemID" ColumnName="TVFileTVItemID" />
@@ -7478,7 +7478,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVItemLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TVItemLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.TVItemLanguage">
               <MappingFragment StoreEntitySet="TVItemLanguages">
                 <ScalarProperty Name="TVItemLanguageID" ColumnName="TVItemLanguageID" />
                 <ScalarProperty Name="TVItemID" ColumnName="TVItemID" />
@@ -7491,7 +7491,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVItemLinks">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TVItemLink">
+            <EntityTypeMapping TypeName="CSSPDBModel.TVItemLink">
               <MappingFragment StoreEntitySet="TVItemLinks">
                 <ScalarProperty Name="TVItemLinkID" ColumnName="TVItemLinkID" />
                 <ScalarProperty Name="FromTVItemID" ColumnName="FromTVItemID" />
@@ -7510,7 +7510,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVItems">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TVItem">
+            <EntityTypeMapping TypeName="CSSPDBModel.TVItem">
               <MappingFragment StoreEntitySet="TVItems">
                 <ScalarProperty Name="TVItemID" ColumnName="TVItemID" />
                 <ScalarProperty Name="TVLevel" ColumnName="TVLevel" />
@@ -7524,7 +7524,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVItemStats">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TVItemStat">
+            <EntityTypeMapping TypeName="CSSPDBModel.TVItemStat">
               <MappingFragment StoreEntitySet="TVItemStats">
                 <ScalarProperty Name="TVItemStatID" ColumnName="TVItemStatID" />
                 <ScalarProperty Name="TVItemID" ColumnName="TVItemID" />
@@ -7536,7 +7536,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVItemUserAuthorizations">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TVItemUserAuthorization">
+            <EntityTypeMapping TypeName="CSSPDBModel.TVItemUserAuthorization">
               <MappingFragment StoreEntitySet="TVItemUserAuthorizations">
                 <ScalarProperty Name="TVItemUserAuthorizationID" ColumnName="TVItemUserAuthorizationID" />
                 <ScalarProperty Name="ContactTVItemID" ColumnName="ContactTVItemID" />
@@ -7551,7 +7551,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TVTypeUserAuthorizations">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.TVTypeUserAuthorization">
+            <EntityTypeMapping TypeName="CSSPDBModel.TVTypeUserAuthorization">
               <MappingFragment StoreEntitySet="TVTypeUserAuthorizations">
                 <ScalarProperty Name="TVTypeUserAuthorizationID" ColumnName="TVTypeUserAuthorizationID" />
                 <ScalarProperty Name="ContactTVItemID" ColumnName="ContactTVItemID" />
@@ -7563,7 +7563,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UseOfSites">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.UseOfSite">
+            <EntityTypeMapping TypeName="CSSPDBModel.UseOfSite">
               <MappingFragment StoreEntitySet="UseOfSites">
                 <ScalarProperty Name="UseOfSiteID" ColumnName="UseOfSiteID" />
                 <ScalarProperty Name="SiteTVItemID" ColumnName="SiteTVItemID" />
@@ -7585,7 +7585,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VPAmbients">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.VPAmbient">
+            <EntityTypeMapping TypeName="CSSPDBModel.VPAmbient">
               <MappingFragment StoreEntitySet="VPAmbients">
                 <ScalarProperty Name="VPAmbientID" ColumnName="VPAmbientID" />
                 <ScalarProperty Name="VPScenarioID" ColumnName="VPScenarioID" />
@@ -7606,7 +7606,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VPResults">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.VPResult">
+            <EntityTypeMapping TypeName="CSSPDBModel.VPResult">
               <MappingFragment StoreEntitySet="VPResults">
                 <ScalarProperty Name="VPResultID" ColumnName="VPResultID" />
                 <ScalarProperty Name="VPScenarioID" ColumnName="VPScenarioID" />
@@ -7622,7 +7622,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VPScenarioLanguages">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.VPScenarioLanguage">
+            <EntityTypeMapping TypeName="CSSPDBModel.VPScenarioLanguage">
               <MappingFragment StoreEntitySet="VPScenarioLanguages">
                 <ScalarProperty Name="VPScenarioLanguageID" ColumnName="VPScenarioLanguageID" />
                 <ScalarProperty Name="VPScenarioID" ColumnName="VPScenarioID" />
@@ -7635,7 +7635,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VPScenarios">
-            <EntityTypeMapping TypeName="CSSPWebToolsDBModel.VPScenario">
+            <EntityTypeMapping TypeName="CSSPDBModel.VPScenario">
               <MappingFragment StoreEntitySet="VPScenarios">
                 <ScalarProperty Name="VPScenarioID" ColumnName="VPScenarioID" />
                 <ScalarProperty Name="InfrastructureTVItemID" ColumnName="InfrastructureTVItemID" />
@@ -7662,7 +7662,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CSSPWebToolsDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CSSPDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>

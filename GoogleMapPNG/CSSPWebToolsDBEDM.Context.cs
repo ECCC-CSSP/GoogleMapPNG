@@ -13,10 +13,10 @@ namespace GoogleMapPNG
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CSSPWebToolsDBEntities : DbContext
+    public partial class CSSPDBEntities : DbContext
     {
-        public CSSPWebToolsDBEntities()
-            : base("name=CSSPWebToolsDBEntities")
+        public CSSPDBEntities()
+            : base("name=CSSPDBEntities")
         {
         }
     
